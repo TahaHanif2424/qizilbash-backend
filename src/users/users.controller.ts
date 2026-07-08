@@ -3,17 +3,16 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
 } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto, SigninDto } from './dto/user.dto';
+
 import {
   createUser,
+  signin,
   getUsers,
   getUserById,
-  updateUser,
   deleteUser,
 } from './function';
 
@@ -24,6 +23,11 @@ export class UsersController {
     return createUser(createUserDto);
   }
 
+  @Post()
+  signin(@Body() signinDto: SigninDto) {
+    return signin(signinDto)
+  }
+
   @Get()
   findAll() {
     return getUsers();
@@ -32,11 +36,6 @@ export class UsersController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return getUserById(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return updateUser(+id, updateUserDto);
   }
 
   @Delete(':id')
