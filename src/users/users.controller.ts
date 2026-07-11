@@ -23,7 +23,7 @@ export class UsersController {
     return createUser(createUserDto);
   }
 
-  @Post()
+  @Post('signin')
   signin(@Body() signinDto: SigninDto) {
     return signin(signinDto)
   }

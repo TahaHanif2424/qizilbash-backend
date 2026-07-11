@@ -19,6 +19,7 @@ export async function createUser(data: CreateUserDto) {
       email: data.email,
       name: data.name,
       password: hashedPassword,
+      phone: data.phone,
     },
   });
 }
